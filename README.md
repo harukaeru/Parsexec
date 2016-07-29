@@ -1,3 +1,9 @@
+# Parsexec
+## Install
+```sh
+$ pip install git+https://github.com/harukaeru/Parsexec.git
+```
+
 <i>some.md</i>
 <pre><code class="lang-python">This is Test Code
 ```
@@ -7,14 +13,14 @@ print(datetime.today())
 ```
 </code></pre>
 
-<i>import_classes.py</i>
+<i>~/.import_classes.py</i>
 ```python
 from datetime import datetime
 datetime
 ```
 
 ```sh
-$ ./parse_source_print.py some.txt
+$ parsexec some.txt
 ----- Out -----
 data: 4
 class: <class 'int'>
