@@ -21,7 +21,7 @@ datetime
 ```
 
 ```sh
-$ parsexec some.txt
+$ parsexec some.md
 ----- Out -----
 data: 4
 class: <class 'int'>
