@@ -2,7 +2,8 @@
 import sys
 import re
 
-if __name__ == '__main__':
+
+def main():
     try:
         from colorama import Fore, Style
         GREEN = Fore.GREEN
