@@ -14,6 +14,7 @@ IMPORT_CLASS_FILE_NAME = __file__.replace(
     'parse_source_print', 'import_classes'
 )
 print_list = []
+_print = print
 
 
 def remove_indent(s):
@@ -28,17 +29,18 @@ def remove_indent(s):
         return s
 
 
-def colorprint(*args, **kwargs):
+def print(*args, **kwargs):
+    """Change print to this function for Colorized"""
     if len(args) > 1:
         def p():
-            print(*args, **kwargs)
+            _print(*args, **kwargs)
         print_list.append(p)
     else:
         data = args[0]
 
         def q():
-            print(GREEN + "data:" + RESET, data)
-            print(GREEN + "class:" + RESET, type(data))
+            _print(GREEN + "data:" + RESET, data)
+            _print(GREEN + "class:" + RESET, type(data))
         print_list.append(q)
 
 
@@ -81,11 +83,11 @@ def main():
             print_list = []
             exec(import_statements + source_for_test)
 
-            print(GREEN + "----- Out -----" + RESET)
+            _print(GREEN + "----- Out -----" + RESET)
             for p in print_list:
                 p()
-            print(RED + '----- source -----' + RESET)
-            print(import_statements + source)
+            _print(RED + '----- source -----' + RESET)
+            _print(import_statements + source)
             error = False
         except NameError as e:
             # TODO: printed(twice or more)
