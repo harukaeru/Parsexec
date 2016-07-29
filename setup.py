@@ -13,4 +13,9 @@ setup(
     keywords='parse execution markdown',
     packages=find_packages(),
     install_requires=[],
+    entry_points={
+        "console_scripts": [
+            "parsexec=parsexec.parse_source_print:main",
+        ],
+    }
 )
