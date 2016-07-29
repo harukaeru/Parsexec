@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import sys
 import re
+from os.path import expanduser, exists
+
 try:
     from colorama import Fore, Style
     GREEN = Fore.GREEN
@@ -10,11 +12,14 @@ except ImportError:
     GREEN = RED = RESET = ''
 
 
-IMPORT_CLASS_FILE_NAME = __file__.replace(
-    'parse_source_print', 'import_classes'
-)
+IMPORT_CLASS_FILE_NAME = expanduser('~/.import_classes.py')
 print_list = []
 _print = print
+
+
+def create_import_class_if_noexists():
+    if not exists(IMPORT_CLASS_FILE_NAME):
+        open(IMPORT_CLASS_FILE_NAME, 'w')
 
 
 def remove_indent(s):
@@ -40,11 +45,12 @@ def print(*args, **kwargs):
 
         def q():
             _print(GREEN + "data:" + RESET, data)
-            _print(GREEN + "class:" + RESET, type(data))
+            _print(GREEN + "type:" + RESET, type(data))
         print_list.append(q)
 
 
 def main():
+    create_import_class_if_noexists()
     with open(IMPORT_CLASS_FILE_NAME) as f:
         lines = [l.replace('\n', '') for l in f.readlines()]
         s, e = 0, 2
@@ -80,10 +86,11 @@ def main():
     import_statements = ''
     while error:
         try:
+            global print_list
             print_list = []
             exec(import_statements + source_for_test)
 
-            _print(GREEN + "----- Out -----" + RESET)
+            _print(GREEN + "----- PrintOut -----" + RESET)
             for p in print_list:
                 p()
             _print(RED + '----- source -----' + RESET)
@@ -99,3 +106,7 @@ def main():
                 import_statements += import_statement + '\n'
             else:
                 raise NameError(e)
+
+
+if __name__ == '__main__':
+    main()
