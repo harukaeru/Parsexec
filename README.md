@@ -22,17 +22,16 @@ datetime
 
 ```sh
 $ parsexec some.md
------ Out -----
+----- PrintOut -----
 data: 4
-class: <class 'int'>
+type: <class 'int'>
 data: 3
-class: <class 'int'>
-data: 2016-07-15 12:33:18.638318
-class: <class 'datetime.datetime'>
+type: <class 'int'>
+data: 2016-07-29 12:21:29.902603
+type: <class 'datetime.datetime'>
 ----- source -----
 from datetime import datetime
 print(4)
 print(1 + 2)
 print(datetime.today())
-
 ```
