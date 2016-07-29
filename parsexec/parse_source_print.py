@@ -3,6 +3,11 @@ import sys
 import re
 
 
+IMPORT_CLASS_FILE_NAME = __file__.replace(
+    'parse_source_print', 'import_classes'
+)
+
+
 def main():
     try:
         from colorama import Fore, Style
@@ -12,7 +17,7 @@ def main():
     except ImportError:
         GREEN = RED = RESET = ''
 
-    with open('import_classes.py') as f:
+    with open(IMPORT_CLASS_FILE_NAME) as f:
         lines = [l.replace('\n', '') for l in f.readlines()]
         s, e = 0, 2
         import_classes = {}
