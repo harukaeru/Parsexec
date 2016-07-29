@@ -1,0 +1,6 @@
+- `if raise NameError then import` is not efficient
+- `~/.import_classes.py` 2 rows -> 1 row (Python Syntax Parser)
+- Not only python But Also other languages (Generalize)
+- if raise NameError in the end, run interpreter to import and auto add
+- `~/.import_classes.py` by project
+- watch, detect, and run automatically for every files.
